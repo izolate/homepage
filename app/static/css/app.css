@@ -10,7 +10,7 @@
 }
 
 body {
-  padding: 50px;
+  padding: 100px;
   font: 24px/30px 'muli', 'helvetica neue', sans-serif;
   background: #2c3e50;
   color: #97A7B7;
@@ -36,4 +36,8 @@ a {
 
 p {
   max-width: 720px;
+}
+
+@media screen and (max-width: 720px) {
+  body { padding: 25px; }
 }
