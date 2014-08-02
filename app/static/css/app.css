@@ -11,7 +11,7 @@
 
 body {
   padding: 100px;
-  font: 24px/30px 'muli', 'helvetica neue', sans-serif;
+  font: 20px/30px 'muli', 'helvetica neue', sans-serif;
   background: #2c3e50;
   color: #97A7B7;
 }
@@ -34,8 +34,16 @@ a {
   text-decoration: none;
 }
 
+h2 {
+  font: inherit;
+  color: white;
+}
 p {
   max-width: 720px;
+  margin-bottom: 25px;
+}
+.bio {
+  font-size: 1.2em;
 }
 
 @media screen and (max-width: 720px) {
