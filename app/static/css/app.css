@@ -11,7 +11,7 @@
 
 body {
   padding: 50px;
-  font: 28px/34px 'muli', 'helvetica neue', sans-serif;
+  font: 24px/30px 'muli', 'helvetica neue', sans-serif;
   background: #2c3e50;
   color: #97A7B7;
 }
@@ -32,4 +32,8 @@ a {
   color: #BFCBD7;
   border-bottom: 2px dotted #f1c40f;
   text-decoration: none;
+}
+
+p {
+  max-width: 640px;
 }
