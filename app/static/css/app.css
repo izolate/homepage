@@ -22,8 +22,8 @@ body {
 }
 
 em {
-  background: #f1c40f;
-  color: #2c3e50;
+  background: #5E5F3F;
+  color: #F1C40F;
   font-style: normal;
   padding: 0 3px;
 }
@@ -35,5 +35,5 @@ a {
 }
 
 p {
-  max-width: 640px;
+  max-width: 720px;
 }
