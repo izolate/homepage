@@ -3,8 +3,8 @@ page = about
 .{page}
   margin 0 auto
   max-width 640px
-  +above(720px)
-    margin-top 3em
+  +above(960px)
+    transform scale(1.25)
 
 .{page}__logo
   width 100%
@@ -12,3 +12,10 @@ page = about
 
 .{page}__list
   margin-top .5em
+
+  li
+    display inline-block
+    margin-right 1em
+
+    &:last-child
+      margin-right 0
