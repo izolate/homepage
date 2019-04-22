@@ -1,36 +1,23 @@
 {
   "name": "izolate-home",
-  "version": "1.0.0",
-  "description": "Homepage for izolate.net",
-  "main": "dist/index.js",
+  "version": "2.0.0",
+  "description": "My homepage on the internet",
+  "main": "public/index.js",
   "scripts": {
-    "start": "static-server"
+    "start": ""
   },
   "repository": {
     "type": "git",
-    "url": "gh:izolate/single-page-app"
+    "url": "git+ssh://git@github.com/izolate/homepage.git"
   },
   "author": "izolate <yoshtalwar@gmail.com> (http://izolate.net/)",
   "license": "MIT",
-  "dependencies": {
-    "babelify": "^6.3.0",
-    "browserify": "^11.2.0",
-    "dotenv": "^1.2.0",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.0.2",
-    "gulp-csso": "^1.0.0",
-    "gulp-jade": "^1.1.0",
-    "gulp-load-plugins": "^0.10.0",
-    "gulp-stylus": "^2.1.0",
-    "gulp-uglify": "^1.4.1",
-    "jade": "^1.11.0",
-    "require-dir": "^0.3.0",
-    "rupture": "^0.6.1",
-    "stylus": "^0.52.4",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+  "links": {
+    "twitter": "https://twitter.com/izolate",
+    "github": "https://github.com/izolate",
+    "linkedin": "https://www.linkedin.com/in/talwary",
+    "instagram": "https://instagram.com/izol4te"
   },
-  "devDependencies": {
-    "static-server": "^2.0.0"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
