@@ -1,6 +1,6 @@
-# Dist
+# Generated files
+public/*.html
 dist/
-index.html
 
 # Dependencies
 node_modules/

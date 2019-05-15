@@ -1,0 +1,9 @@
+blog:
+  - title: Hello, world!
+    description: First article in the blog
+    slug: hello-world
+    date: 20190419
+    keywords:
+      - hello
+      - world
+      - blog

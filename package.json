@@ -1,16 +1,17 @@
 {
-  "name": "izolate-home",
+  "name": "homepage",
   "version": "2.0.0",
   "description": "My homepage on the internet",
-  "main": "public/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": ""
+    "start": "node src",
+    "fmt": "prettier **/*.js --write"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/izolate/homepage.git"
   },
-  "author": "izolate <yoshtalwar@gmail.com> (http://izolate.net/)",
+  "author": "izolate <izolate@gmail.com> (http://izolate.net/)",
   "license": "MIT",
   "links": {
     "twitter": "https://twitter.com/izolate",
@@ -19,5 +20,12 @@
     "instagram": "https://instagram.com/izol4te"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "markdown": "^0.5.0",
+    "mkdirp": "^0.5.1",
+    "prettier": "^1.17.1",
+    "pug": "^2.0.3",
+    "require-dir": "^1.2.0",
+    "yaml": "^1.5.1"
+  }
 }
