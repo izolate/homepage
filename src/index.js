@@ -26,18 +26,18 @@ const loadYAML = async filePath => {
 const createTemplate = filePath => pug.compileFile(resolvePath(filePath))
 const blogTemplate = createTemplate('views/blog.pug')
 
-// createBlog generates the blog from the template and data.
+// createBlogPost generates the blog from the template and data.
 // It saves the generated HTML to the public directory.
-const createBlog = async blog => {
-  const { slug } = blog
+const createBlogPost = async post => {
+  const { slug, keywords } = post
   const contentPath = resolvePath(BLOG_PATH, `${slug}.md`)
   const contentData = await readFile(contentPath, 'utf-8')
   const contentHTML = markdown.toHTML(contentData.toString())
 
   const html = blogTemplate({
-    ...blog,
+    ...post,
     content: contentHTML,
-    keywords: blog.keywords.join(', '),
+    keywords: keywords.join(', '),
   })
 
   const filePath = resolvePath(PUBLIC_PATH, 'blog', `${slug}.html`)
@@ -52,8 +52,8 @@ async function main() {
   // Create blog directory
   await mkdirp(resolvePath(`${PUBLIC_PATH}/blog`))
 
-  for (const blog of config.blog) {
-    await createBlog(blog)
+  for (const post of config.blog) {
+    await createBlogPost(post)
   }
 }
 
