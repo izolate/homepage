@@ -1,3 +1,17 @@
+meta:
+  title: Yosh (@izolate)
+  description: izolate is a full stack software engineer and UI designer. He's passionate about startups, open-source and good design.
+  keywords:
+    - yosh
+    - talwar
+    - izolate
+    - developer
+    - engineer
+    - webdev
+    - fullstack
+    - frontend
+    - backend
+
 blog:
   - title: Hello, world!
     description: First article in the blog

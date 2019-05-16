@@ -4,8 +4,8 @@
   "description": "My homepage on the internet",
   "main": "index.js",
   "scripts": {
-    "start": "node src",
-    "fmt": "prettier **/*.js --write"
+    "start": "node .",
+    "fmt": "prettier '**/*.js' --write"
   },
   "repository": {
     "type": "git",

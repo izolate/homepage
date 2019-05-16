@@ -1,0 +1,12 @@
+doctype html
+html(lang='en')
+  include head.pug
+  body.home
+    section#blog
+      h2 Blog
+      ul
+        each post in blog
+          li
+            - var suffix = isDev ? '.html' : ''
+            - var link = `blog/${post.slug}${suffix}`;
+            a(href=link)= post.title

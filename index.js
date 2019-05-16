@@ -10,10 +10,12 @@ const mkdirp = promisify(require('mkdirp'))
 const writeFile = promisify(fs.writeFile)
 const readFile = promisify(fs.readFile)
 
+const isDev = process.env.NODE_ENV === 'development'
+
 // resolvePath creates a file path from the cwd.
 const resolvePath = (...paths) => path.resolve(__dirname, ...paths)
-const PUBLIC_PATH = resolvePath('../public')
-const CONFIG_PATH = resolvePath('../site.yml')
+const PUBLIC_PATH = resolvePath('public')
+const CONFIG_PATH = resolvePath('site.yml')
 const BLOG_PATH = resolvePath('blog')
 
 // loadYAML loads and parses a YAML file.
@@ -24,7 +26,22 @@ const loadYAML = async filePath => {
 
 // createTemplate compiles a Pug template.
 const createTemplate = filePath => pug.compileFile(resolvePath(filePath))
+const indexTemplate = createTemplate('views/index.pug')
 const blogTemplate = createTemplate('views/blog.pug')
+
+// createIndex creates the homepage from a template.
+const createIndex = async config => {
+  const { meta, blog } = config
+  const html = indexTemplate({
+    ...meta,
+    keywords: meta.keywords.join(', '),
+    blog,
+    isDev,
+  })
+
+  const filePath = resolvePath(PUBLIC_PATH, 'index.html')
+  await writeFile(filePath, html, 'utf-8')
+}
 
 // createBlogPost generates the blog from the template and data.
 // It saves the generated HTML to the public directory.
@@ -49,9 +66,10 @@ const createBlogPost = async post => {
 async function main() {
   const config = await loadYAML(CONFIG_PATH)
 
-  // Create blog directory
-  await mkdirp(resolvePath(`${PUBLIC_PATH}/blog`))
+  await createIndex(config)
 
+  // Create blog directory and generate posts
+  await mkdirp(resolvePath(`${PUBLIC_PATH}/blog`))
   for (const post of config.blog) {
     await createBlogPost(post)
   }
