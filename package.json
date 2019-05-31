@@ -4,7 +4,8 @@
   "description": "My homepage on the internet",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "NO_UPDATE_CHECK=1 serve ./public",
+    "build": "node .",
     "fmt": "prettier '**/*.js' --write"
   },
   "repository": {
@@ -19,13 +20,17 @@
     "linkedin": "https://www.linkedin.com/in/talwary",
     "instagram": "https://instagram.com/izol4te"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "markdown": "^0.5.0",
-    "mkdirp": "^0.5.1",
-    "prettier": "^1.17.1",
+  "dependencies": {
+    "front-matter": "^3.0.2",
     "pug": "^2.0.3",
-    "require-dir": "^1.2.0",
-    "yaml": "^1.5.1"
+    "remark": "^10.0.1",
+    "remark-autolink-headings": "^5.2.0",
+    "remark-highlight.js": "^5.1.0",
+    "remark-html": "^9.0.0",
+    "remark-slug": "^5.1.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.17.1",
+    "serve": "^11.0.0"
   }
 }

@@ -1,80 +1,165 @@
-const requireDir = require('require-dir')
-const fs = require('fs')
-const path = require('path')
-const { promisify } = require('util')
-const YAML = require('yaml')
-const pug = require('pug')
-const { markdown } = require('markdown')
+const fs = require('fs').promises;
+const path = require('path');
+const frontMatter = require('front-matter');
+const remark = require('remark');
+const remarkHTML = require('remark-html');
+const remarkSlug = require('remark-slug');
+const remarkHighlight = require('remark-highlight.js');
+const pug = require('pug');
 
-const mkdirp = promisify(require('mkdirp'))
-const writeFile = promisify(fs.writeFile)
-const readFile = promisify(fs.readFile)
+// Store a reference to the source directory.
+const postsDirPath = path.resolve(__dirname, 'posts');
+// Store a reference path to the destination directories.
+const publicDirPath = path.resolve(__dirname, 'public');
+const publicBlogDirPath = path.resolve(publicDirPath, 'blog');
 
-const isDev = process.env.NODE_ENV === 'development'
+/**
+ * getFiles returns a list of all files in a directory path {dirPath}
+ * that match a given file extension {fileExt} (optional).
+ */
+const getFiles = async (dirPath, fileExt = '') => {
+  // List all the entries in the directory.
+  const dirents = await fs.readdir(dirPath, { withFileTypes: true });
 
-// resolvePath creates a file path from the cwd.
-const resolvePath = (...paths) => path.resolve(__dirname, ...paths)
-const PUBLIC_PATH = resolvePath('public')
-const CONFIG_PATH = resolvePath('site.yml')
-const BLOG_PATH = resolvePath('blog')
+  return (
+    dirents
+      // Omit any sub-directories.
+      .filter(dirent => dirent.isFile())
+      // Ensure the file extension matches a given extension (optional).
+      .filter(dirent =>
+        fileExt.length ? dirent.name.toLowerCase().endsWith(fileExt) : true
+      )
+      // Return a list of file names.
+      .map(dirent => dirent.name)
+  );
+};
 
-// loadYAML loads and parses a YAML file.
-const loadYAML = async filePath => {
-  const data = await readFile(filePath, 'utf-8')
-  return YAML.parse(data.toString())
-}
+// removeFiles deletes all files in a directory that match a file extension.
+const removeFiles = async (dirPath, fileExt) => {
+  // Get a list of all files in the directory.
+  const fileNames = await getFiles(dirPath, fileExt);
 
-// createTemplate compiles a Pug template.
-const createTemplate = filePath => pug.compileFile(resolvePath(filePath))
-const indexTemplate = createTemplate('views/index.pug')
-const blogTemplate = createTemplate('views/blog.pug')
+  // Create a list of files to remove.
+  const filesToRemove = fileNames.map(fileName =>
+    fs.unlink(path.resolve(dirPath, fileName))
+  );
 
-// createIndex creates the homepage from a template.
-const createIndex = async config => {
-  const { meta, blog } = config
-  const html = indexTemplate({
-    ...meta,
-    keywords: meta.keywords.join(', '),
-    blog,
-    isDev,
-  })
+  return Promise.all(filesToRemove);
+};
 
-  const filePath = resolvePath(PUBLIC_PATH, 'index.html')
-  await writeFile(filePath, html, 'utf-8')
-}
+/**
+ * parsePost consumes the file name and file content and returns a post
+ * object with separate front matter (meta), post body and slug.
+ */
+const parsePost = (fileName, fileData) => {
+  // Strip the extension from the file name to get a slug.
+  const slug = path.basename(fileName, '.md');
+  // Split the file content into the front matter (attributes) and post body.
+  const { attributes, body } = frontMatter(fileData);
 
-// createBlogPost generates the blog from the template and data.
-// It saves the generated HTML to the public directory.
-const createBlogPost = async post => {
-  const { slug, keywords } = post
-  const contentPath = resolvePath(BLOG_PATH, `${slug}.md`)
-  const contentData = await readFile(contentPath, 'utf-8')
-  const contentHTML = markdown.toHTML(contentData.toString())
+  return { ...attributes, body, slug };
+};
 
-  const html = blogTemplate({
+/**
+ * getPosts lists and reads all the Markdown files in the posts directory,
+ * returning a list of post objects after parsing the file contents.
+ */
+const getPosts = async dirPath => {
+  // Get a list of all Markdown files in the directory.
+  const fileNames = await getFiles(dirPath, '.md');
+
+  // Create a list of files to read.
+  const filesToRead = fileNames.map(fileName =>
+    fs.readFile(path.resolve(dirPath, fileName), 'utf-8')
+  );
+
+  // Asynchronously read all the file contents.
+  const fileData = await Promise.all(filesToRead);
+
+  return fileNames.map((fileName, i) => parsePost(fileName, fileData[i]));
+};
+
+/**
+ * markdownToHTML converts Markdown text to HTML.
+ * Adds links to headings, and code syntax highlighting.
+ */
+const markdownToHTML = text =>
+  new Promise((resolve, reject) =>
+    remark()
+      .use(remarkHTML)
+      .use(remarkSlug)
+      .use(remarkHighlight)
+      .process(text, (err, file) =>
+        err ? reject(err) : resolve(file.contents)
+      )
+  );
+
+// getTemplatePath creates a file path to an HTML template file.
+const getTemplatePath = name =>
+  path.resolve(__dirname, 'templates', path.format({ name, ext: '.pug' }));
+
+/**
+ * createPostFile generates a new HTML page from a template and saves the file.
+ * It also converts the post body from Markdown to HTML.
+ */
+const createPostFile = async post => {
+  // Use the template engine to generate the file content.
+  const fileData = pug.renderFile(getTemplatePath('post'), {
     ...post,
-    content: contentHTML,
-    keywords: keywords.join(', '),
-  })
+    // Convert Markdown to HTML.
+    body: await markdownToHTML(post.body)
+  });
 
-  const filePath = resolvePath(PUBLIC_PATH, 'blog', `${slug}.html`)
-  await writeFile(filePath, html, 'utf-8')
+  // Combine the slug and file extension to create a file name.
+  const fileName = path.format({ name: post.slug, ext: '.html' });
+  // Create a file path in the destination directory.
+  const filePath = path.resolve(publicBlogDirPath, fileName);
 
-  return html
-}
+  // Save the file in the desired location.
+  await fs.writeFile(filePath, fileData, 'utf-8');
 
-async function main() {
-  const config = await loadYAML(CONFIG_PATH)
+  return post;
+};
 
-  await createIndex(config)
+/**
+ * createIndexFile generates an index file with a list of blog posts.
+ */
+const createIndexFile = async posts => {
+  // Use the template engine to generate the file content.
+  const fileData = pug.renderFile(getTemplatePath('index'), { posts });
+  // Create a file path in the destination directory.
+  const filePath = path.resolve(publicDirPath, 'index.html');
 
-  // Create blog directory and generate posts
-  await mkdirp(resolvePath(`${PUBLIC_PATH}/blog`))
-  for (const post of config.blog) {
-    await createBlogPost(post)
-  }
-}
+  // Save the file in the desired location.
+  await fs.writeFile(filePath, fileData, 'utf-8');
+};
 
-main()
-  .then(() => console.log('Success'))
-  .catch(err => console.error(err))
+// build runs the static site generator.
+const build = async () => {
+  // Delete any previously-generated HTML files in the public directory.
+  await removeFiles(publicBlogDirPath, '.html');
+
+  // Get all the Markdown files in the posts directory.
+  const posts = await getPosts(postsDirPath);
+
+  // Generate pages for all posts that are public.
+  const postsToCreate = posts
+    .filter(post => Boolean(post.public))
+    .map(post => createPostFile(post));
+
+  const createdPosts = await Promise.all(postsToCreate);
+
+  // Generate a page with a list of posts.
+  await createIndexFile(
+    // Sort created posts by publish date.
+    createdPosts.sort((a, b) => new Date(b.date) - new Date(a.date))
+  );
+
+  return createdPosts;
+};
+
+build()
+  .then(created =>
+    console.log(`Build successful. Generated ${created.length} post(s).`)
+  )
+  .catch(err => console.error(err));

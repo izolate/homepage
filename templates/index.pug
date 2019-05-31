@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+  include head.pug
+
+  body.home
+    main.container
+      section#about-me
+        h1 izolate 
+        p.
+          My name is Yosh Talwar (यशोधन) and I'm a full-stack software  engineer,
+          indie-hacker, designer, traveler, photographer, foodie, beer-fan,
+          runner, and all-round geek.
+
+        p Find me around the web:
+        ul
+          li
+            a(href='https://twitter.com/izolate') Twitter
+          li
+            a(href='https://github.com/izolate') Github
+          li
+            a(href='https://instagram.com/izol4te') Instagram
+          li
+            a(href='https://facebook.com/yat86') Facebook
+          li
+            a(href='https://linkedin.com/in/talwary') LinkedIn
+
+      if posts.length
+        section#blog
+          header
+            h2 Blog
+          p I promise to only seldom write posts.
+          ul
+            each post in posts
+              li
+                a(href=`blog/${post.slug}`)= post.title
+
+    include footer.pug

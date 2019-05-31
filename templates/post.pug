@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+  include head.pug
+
+  body.post
+    main.container
+      a.btn(href='/') home
+
+      article
+        header.header
+          h1= title
+          .meta
+            if date
+              - var d = new Date(date)
+              span.date= date
+
+            if tags
+              .tags
+                each tag in tags
+                  span.tag= `#${tag}`
+
+        .markdown-body!= body
+
+    script(src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js')
+    script.
+      window.hljs.initHighlightingOnLoad();
+
+    include footer.pug
