@@ -1,28 +1,23 @@
-doctype html
-html(lang='en')
-  include head.pug
+extends base.pug
 
-  body.post
-    main.container
-      a.btn(href='/') home
+block content
+  main.container.post
+    nav
+      a.btn(href='/') izolate
 
-      article
-        header.header
-          h1= title
-          .meta
-            if date
-              - var d = new Date(date)
-              span.date= date
+    article
+      header.header
+        h1= title
+        .meta
+          if date
+            span.date= date
 
-            if tags
-              .tags
-                each tag in tags
-                  span.tag= `#${tag}`
+          if tags
+            .tags
+              each tag in tags
+                span.tag= `#${tag}`
 
-        .markdown-body!= body
+      .markdown-body!= body
 
-    script(src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js')
-    script.
-      window.hljs.initHighlightingOnLoad();
-
-    include footer.pug
+block prepend scripts
+  script(src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js', defer)

@@ -2,24 +2,25 @@
 
 :root {
   --bg-color: #121212;
-  --font-color: white;
+  --font-color: #ffffff;
   --font-family: 'Ubuntu', sans-serif;
   --font-family-mono: 'Ubuntu Mono', monospace;
   --font-size: 16px;
 
 	--color-yellow: #F8E81C;
-	/*
-  --h0: 4.5rem;
-  --h1: 3rem;
-  --h2: 2.25rem;
-  --h3: 1.5rem;
-  --h4: 1.125rem;
-  --h5: 0.75rem;
-	*/
+
+  /*
   --h1: 2.25rem;
   --h2: 1.5rem;
   --h3: 1.125rem;
+  */
+
+  --h0: 3rem;
+  --h1: 2.5rem;
+  --h2: 1.8rem;
+  --h3: 1.4rem;
   --h4: 1.125rem;
+  --h5: 0.75rem;
 
   --lh: calc(4 / 3);
 
@@ -27,13 +28,11 @@
   --fw-bold: 700;
 
 	--page-width: 700px;
-  --page-padding: 1em;
 }
 
 @media (max-width: 800px) {
   :root {
     --page-width: 100%;
-    --page-padding: 2em;
   }
 }
 
@@ -110,12 +109,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 1.5em;
 }
 
 .container {
   width: 100%;
   max-width: var(--page-width);
-  padding: 2.5em var(--page-padding);
 }
 
 .btn {
@@ -127,10 +126,23 @@ body {
   text-decoration: none;
 }
 
+ul.blog li {
+  margin-bottom: 0.5em;
+}
+
+.separator {
+  display: flex;
+  justify-content: center;
+  margin: 2em 0;
+}
+
 .meme {
   display: block;
   margin: 0 auto;
 }
+
+/* Home */
+#whoami
 
 /* Post */
 .post .header {
@@ -138,15 +150,33 @@ body {
 }
 
 .meta {
-  margin-top: -2em;
   font-size: 0.8em;
   opacity: 0.5;
   display: flex;
 }
-.date,
-.tags .tag {
+.post .meta {
+  margin-top: -2em;
+}
+.meta .date,
+.meta .tags .tag {
   margin-right: 0.5em;
 }
-.tags .tag:last-child {
+.meta .tags .tag:last-child {
   margin-right: 0;
+}
+
+/* Main */
+main nav {
+  margin-top: 2em;
+}
+
+/* Footer */
+#footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+#footer nav {
+  margin-bottom: 2em;
 }
