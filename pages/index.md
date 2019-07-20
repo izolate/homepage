@@ -20,7 +20,7 @@ Please [contact me](/contact) if you're looking to work together.
 
 ## Open source
 
-- [tota](https://github.com/tota-dart/tota) - Static site generator.
+- [tota](https://tota.dev) - Static site generator.
 - [html2pug](https://html2pug.com) - Converts HTML to Pug
 - [millify](https://github.com/izolate/millify) - Converts long numbers to human-readable strings
 - [front-matter](https://pub.dev/packages/front_matter) - Front matter parser
