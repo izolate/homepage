@@ -2,6 +2,7 @@
 title: "Build your own static site generator (because why not?)"
 date: "2019-06-01"
 public: true
+template: "posts.mustache"
 tags:
   - tutorial
   - nodejs
