@@ -1,0 +1,30 @@
+meta:
+  title: Yosh (@izolate)
+  description: izolate is a full stack software engineer and UI designer. He's passionate about startups, open-source and good design.
+  keywords:
+    - yosh
+    - talwar
+    - izolate
+    - developer
+    - engineer
+    - webdev
+    - fullstack
+    - frontend
+    - backend
+
+blog:
+  - title: Build your own static blog generator in 10 minutes
+    description: Looking for a dead simple static blog generator? Build your own in 10 minutes with Node.js, Markdown and YAML
+    slug: build-your-own-static-blog-generator-in-10-minutes
+    date: 20190520
+    public: false
+
+  - title: Hello, world!
+    description: First article in the blog
+    slug: hello-world
+    date: 20190519
+    public: true
+    keywords:
+      - hello
+      - world
+      - blog

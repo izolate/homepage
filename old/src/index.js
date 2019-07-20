@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events'
 
 class App extends EventEmitter {
-  constructor () {
+  constructor() {
     super()
   }
 }

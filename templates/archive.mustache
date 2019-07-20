@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> head }}
+  </head>
+  <body>
+    <main class="container">
+      <h1>Blog</h1>
+      <p>All opinions expressed here are entirely my own and not representative of my employers; past, present or future.</p>
+      <ul class="archive-list">
+      {{#posts}}
+        <li>
+          <a href="{{{path}}}">
+            <h3>{{title}}</h3>
+          </a>
+        </li>
+      {{/posts}}
+      </ul>
+    </main>
+    {{> footer }}
+  </body>
+</html>

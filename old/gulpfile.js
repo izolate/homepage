@@ -3,7 +3,7 @@ const gulp = require('gulp')
 
 // require individual tasks
 require('require-dir')('./gulp', {
-  recurse: true
+  recurse: true,
 })
 
 const tasks = ['css', 'js', 'views']
