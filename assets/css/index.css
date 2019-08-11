@@ -11,6 +11,7 @@
  * Headings.............H1–H6 styles.
  * Links................Anchor styles.
  * Code.................Code block styles.
+ * Quotes...............Block quote styles.
  *
  * OBJECTS
  * Wrappers.............Wrapping and constraining elements.
@@ -30,7 +31,7 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Ubuntu:400,400i,500,700&display=swap");
 :root {
   /* Fonts */
-  --font-size: 16px;
+  --font-size: 18px;
   --font-size-h0: 3rem;
   --font-size-h1: 2.5rem;
   --font-size-h2: 1.8rem;
@@ -44,7 +45,7 @@
   --color-white: #ffffff;
   --color-yellow: #f8e81c;
   --color-black: #121212;
-  --line-height: calc(4 / 3);
+  --line-height: 1.5;
   --page-width: 700px;
 }
 
@@ -161,6 +162,17 @@ code:not([class^="language-"]) {
   color: #444;
   background-color: #f1f0ea;
   border-radius: 4px;
+}
+
+/*------------------------------------*\
+  #Code
+\*------------------------------------*/
+
+blockquote {
+  margin-left: 0;
+  padding-left: 1em;
+  border-left: 2px solid var(--color-yellow);
+  font-style: italic;
 }
 
 /*------------------------------------*\
