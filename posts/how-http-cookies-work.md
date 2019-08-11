@@ -6,11 +6,12 @@ template: posts
 public: true
 ---
 
-An HTTP cookie is a small (4 KB) piece of data that a client (browser) stores locally.
+An HTTP cookie is a tiny (4 KB) piece of data that a client (e.g. browser)
+stores locally.
 
-Since HTTP is a stateless protocol, cookies act
-as a shared state that enable some excellent things (sessions, personalization),
-and some not-so-excellent ones too (ad tracking).
+Since HTTP is a stateless protocol, cookies act as a shared state that enable
+some truly great things (persistent login sessions), and some other not-so-great
+ones (ad-tracking).
 
 <br>
 
@@ -48,20 +49,23 @@ Initially, the behaviour of cookies was outlined in
 [RFC 2109](https://tools.ietf.org/html/rfc2109), which allowed multiple cookies
 to be "folded" into a single `Set-Cookie` header separated by a comma.
 
+<small style="color:#ccc; margin-bottom:-45px; display:block">❌ &nbsp;The wrong way</small>
 ```http
 Set-Cookie: user_id=123, app_theme=dark, likes_apples=true
 ```
 
+
 As you can imagine, setting multiple cookies (along with their attributes)
-created a long, unsightly header values. Probably realising this needed 
+created long, unsightly header values. Probably realising this needed
 improvement, the IETF released [RFC 6265](https://tools.ietf.org/html/rfc6265)
-in 2011, which states:
+in 2011, which notably set a new rule:
 
 > Origin servers SHOULD NOT fold multiple Set-Cookie header fields into a single header field.
 
-This was quickly adopted by all major browsers, and allows for a much cleaner
-approach to creating multiple cookies:
+This was quickly adopted by all major browsers, and now allows for a much
+cleaner approach to creating multiple cookies.
 
+<small style="color:#ccc; margin-bottom:-45px; display:block">✔️ &nbsp;The correct way</small>
 ```http
 Set-Cookie: user_id=123
 Set-Cookie: app_theme=dark

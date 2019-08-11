@@ -1,5 +1,6 @@
 ---
 title: "Yosh (@izolate)"
+template: base
 public: true
 ---
 
