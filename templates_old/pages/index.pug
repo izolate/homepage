@@ -1,0 +1,42 @@
+extends ../base.pug
+
+block content
+  main.container
+    section
+      h1 izolate ⚡
+
+      - var hindi = 'यशोधन'
+      p My name is Yosh Talwar (#{hindi}) and I'm an indie hacker. As a full stack engineer, I draw upon my interests in art, design and anthropology to bring a unique perspective to the trade.
+
+      P I'm currently in southeast Asia, persuing a life of a digital nomad. Aside from code, I enjoy taking photographs, seeking new food adventures, traveling, and playing music.
+
+      p Also available for remote work, please #[a(href='/contact') contact] me.
+
+      h3 Skills
+      ul
+        li JavaScript, Node.js, Go, Python, Dart, Swift
+        li React, React Native, Vue
+        li Postgres, MongoDB, Google Spanner
+        li Linux, Docker, K8, Google Cloud, AWS and more.
+
+      h3 Open source
+      ul
+        +link('html2pug', 'https://github.com/izolate/html2pug') &nbsp;- Converts HTML to Pug
+        +link('html2pug.com', 'https://html2pug.com') &nbsp;- Website for html2pug
+        +link('millify', 'https://github.com/izolate/millify') &nbsp;- Converts long numbers to human-readable strings
+        +link('front-matter', 'https://pub.dev/packages/front_matter') &nbsp;- Front matter parser
+        +link('slugify', 'https://github.com/izolate/slugify') &nbsp;- Converts a string to a slug
+
+      if posts.length
+        h3 Latest posts
+        ul
+          each post in posts.slice(0, 3)
+            +link(post.title, `/blog/${post.slug}`)
+
+      h3 Quick links
+      ul
+        +link('Twitter', 'https://twitter.com/izolate')
+        +link('GitHub', 'https://github.com/izolate')
+        +link('LinkedIn', 'https://linkedin.com/in/talwary')
+
+ 

@@ -1,0 +1,15 @@
+- var defaultDescription = 'homepage of izolate'
+- var defaultTitle = 'izolate'
+
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width')
+  meta(description=description || defaultDescription)
+  if keywords
+    meta(keywords=keywords.join(', '))
+
+  title= title || defaultTitle
+
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.5.0/modern-normalize.min.css')
+  link(rel='stylesheet', href='/assets/index.css')
+  link(rel='stylesheet', href='/assets/tomorrow-night-bright.css')

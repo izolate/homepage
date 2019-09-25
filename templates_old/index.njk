@@ -1,0 +1,33 @@
+{% extends "./base.njk" %}
+
+{% macro link(title, url) %}
+<li>
+  <a href="{{ url }}">{{ title }}</a>
+</li>
+{% endmacro %}
+
+{% block body %}
+  <main class="container">
+    <section>
+      <header>
+        <h1>izolate</h1>
+      </header>
+      <p>My name is Yosh Talwar (यशोधन) and I'm a full-stack software engineer, UI designer, indie-hacker, traveler, photographer, foodie, beer-drinker, runner, and all-around geek.</p>
+      <p>Find me around the web:</p>
+      <ul>
+        {{ link('GitHub', 'https://github.com/izolate') }}
+      </ul>
+    </section>
+    <section>
+      <header>
+        <h1>Blog</h1>
+      </header>
+
+      <ol>
+      {% for post in posts %}
+        {{ link(post.title, '/blog/' + post.slug) }}
+      {% endfor %}
+      </ol>
+    <section>
+  </main>
+{% endblock %}

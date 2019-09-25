@@ -1,0 +1,21 @@
+extends ../base.pug
+
+block content
+  main.container
+    h2 Blog
+
+    p All opinions expressed here are entirely my own and not representative of my employers; past, present or future. 
+
+    if posts.length
+      ul.blog
+        each post in posts
+          li
+            a(href=`/blog/${post.slug}`)= post.title
+            .meta
+              if post.date
+                span.date= post.date
+
+              if post.tags
+                .tags
+                  each tag in post.tags
+                    span.tag= `#${tag}`
