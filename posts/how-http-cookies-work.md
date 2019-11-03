@@ -10,7 +10,7 @@ An HTTP cookie is a tiny (4 KB) piece of data that a client (e.g. your browser)
 stores locally.
 
 Since HTTP is a stateless protocol, cookies act as a shared, persistent state
-between the client and sever, and that enables you to build complex applications.
+between the client and sever, enabling you to build complex applications.
 For example, cookies allow you to preserve login sessions when closing a
 browser tab.
 
@@ -18,8 +18,8 @@ browser tab.
 
 ## Creating cookies
 
-While cookies can also be created by the client itself, server-originating
-cookies are the most common, and so this article will focus on that.
+While cookies can also be created by the client, server-originating
+cookies are the most common, so this article will focus on that.
 
 The client stores a cookie when the server instructs it to do so.
 This instruction comes by the way of a specific header in the **response**
