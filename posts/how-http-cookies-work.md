@@ -10,40 +10,40 @@ An HTTP cookie is a tiny (4 KB) piece of data that a client (e.g. your browser)
 stores locally.
 
 Since HTTP is a stateless protocol, cookies act as a shared, persistent state
-between the client and sever, and that enables us to build complex applications.
-Login sessions are a very common use case for cookies.
+between the client and sever, and that enables you to build complex applications.
+For example, cookies allow you to preserve login sessions when closing a
+browser tab.
 
 <br>
 
 ## Creating cookies
 
-While cookies can also be created by the client itself, server-initiated
-cookies are the most common, and the one we'll focus on.
+While cookies can also be created by the client itself, server-originating
+cookies are the most common, and so this article will focus on that.
 
-The client stores a cookie when the server gives it an order to do so.
-This order comes by the way of a specific header in the **response** to the
-client's HTTP request:
+The client stores a cookie when the server instructs it to do so.
+This instruction comes by the way of a specific header in the **response**
+to the client's HTTP request:
 
 ```http
 HTTP/1.1 200 OK
 Set-Cookie: user_id=123
 ```
 
-This will create a cookie with name of `user_id` and value of `123`.
+This creates a cookie with name of `user_id` and value of `123`.
 
 A cookie may have several attributes too, which are separated by a
-semicolon (`;`), and appended to the end of the cookie value.
+semicolon (`;`), and appended to the end of the header value.
 
 ```http
-Set-Cookie: user_id=123; Expires=Wed, 11 Aug 2019 00:00:00 GMT; Secure; HttpOnly
+Set-Cookie: user_id=123; Domain=example.com; HttpOnly
 ```
 
 This creates a new cookie with the following attributes:
 
 * Name: `user_id`
 * Value: `123`
-* Expiry: `Wed, 11 Aug 2019 00:00:00 GMT`
-* Secure: `true`
+* Domain: `example.com`
 * HttpOnly: `true`
 
 ### Common attributes
@@ -59,9 +59,9 @@ This creates a new cookie with the following attributes:
 
 ## Creating multiple cookies
 
-There is old, deprecated way and a new standard. Cookies are standardised by
-the Internet Engineering Task Force (IETF) and explained in a Request For
-Comments (RFC) Document.
+A little bit of history; there is an old, deprecated way and a new standard.
+Cookies are standardised by the Internet Engineering Task Force (IETF)
+and explained in a Request For Comments (RFC) Document.
 
 Initially, the behaviour of cookies was outlined in
 [RFC 2109](https://tools.ietf.org/html/rfc2109), which allowed multiple cookies
@@ -75,8 +75,8 @@ Set-Cookie: user_id=123, app_theme=dark, likes_apples=true
 
 As you can imagine, setting multiple cookies (along with their attributes)
 created long, unsightly header values. Probably realising this needed
-improvement, the IETF released [RFC 6265](https://tools.ietf.org/html/rfc6265)
-in 2011, which notably set a new rule:
+improvement, in 2011 the IETF released [RFC 6265](https://tools.ietf.org/html/rfc6265),
+which notably set a new rule:
 
 > Origin servers SHOULD NOT fold multiple Set-Cookie header fields into a single header field.
 
@@ -95,8 +95,9 @@ Set-Cookie: likes_apples=true
 
 ## Returning cookies
 
-The cookie's journey back to the server is through the `Cookie` header in the
-HTTP request.
+Once a cookie is created, the client sends the cookie back to the server on
+every request. The cookie's journey back to the server is through the `Cookie`
+header in the HTTP request.
 
 ```http
 GET /index.html HTTP/1.1
@@ -104,14 +105,14 @@ Cookie: user_id=123
 ```
 
 In contrast to `Set-Cookie`, multiple cookies are folded into the same
-header value, and are a bit confusingly separated by a semicolon.
+header value, and are (a bit confusingly) separated by a semicolon.
 
 ```http
 Cookie: user_id=123; app_theme=dark; likes_apples=true
 ```
 
-Cookie attributes are never returned to the server. They are instructions for
-the client from the server.
+Cookie attributes are never returned to the server. They are instructions meant
+for the client from the server.
 
 <br>
 
