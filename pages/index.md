@@ -1,5 +1,5 @@
 ---
-title: "Yosh (@izolate)"
+title: "Yosh (izolate)"
 template: base
 public: true
 ---
