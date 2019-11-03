@@ -1,0 +1,334 @@
+/**
+ * CSS kit
+ * @author izolate <https://izolate.net>
+ * @license MIT
+ */
+
+/* ==========================================================================
+   Global
+   ========================================================================== */
+
+:root {
+  /* Typography */
+  --font-size: 16px;
+  --font-family: sans-serif;
+  --font-family-monospace: monospace;
+  --line-height: 1.55;
+  --text-decoration-style: normal;
+
+  /* Colors (HSL) */
+  --color-primary: 217, 71%;
+  --color-info: 204, 71%;
+  --color-success: 141, 53%;
+  --color-warning: 48, 100%;
+  --color-danger: 348, 86%;
+
+  /* Element modifiers */
+  --btn-border-radius: 0;
+  --table-border-color: rgba(0, 0, 0, 0.2);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  box-sizing: border-box;
+}
+
+body {
+  line-height: var(--line-height);
+  font-size: 100%;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold;
+  margin: 2.75rem 0 1rem;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: 3.052em;
+}
+
+h2 {
+  font-size: 2.441em;
+}
+
+h3 {
+  font-size: 1.953em;
+}
+
+h4 {
+  font-size: 1.563em;
+}
+
+h5 {
+  font-size: 1.25em;
+}
+
+small {
+  font-size: 0.8em;
+}
+
+/* ==========================================================================
+   Elements
+   ========================================================================== */
+
+a {
+  color: inherit;
+  text-decoration-style: var(--text-decoration-style);
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+p {
+  margin-bottom: 1.25em;
+}
+
+code {
+  font-family: var(--font-family-monospace);
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.table td,
+.table th {
+  padding: 0.5em 0.75em;
+  vertical-align: top;
+  border: 1px solid var(--table-border-color);
+  border-width: 0 0 1px;
+}
+
+.table th {
+  font-weight: bold;
+  border-width: 0 0 2px;
+}
+
+.table th:not([align]) {
+  text-align: left;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  padding-top: calc(0.65em - 1px);
+  padding-bottom: calc(0.65em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  cursor: pointer;
+  font-family: inherit;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  color: #363636;
+  background-color: white;
+  border-radius: var(--btn-border-radius);
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dbdbdb;
+}
+.btn:hover {
+  border-color: #b5b5b5;
+}
+.btn:focus {
+  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+  border-color: #3273dc;
+}
+.btn:active {
+  border-color: #4a4a4a;
+}
+
+/* Button colors
+   ========================================================================== */
+
+/* White */
+
+.btn.white,
+.btn.white:hover {
+  background-color: #ffffff;
+  border-color: transparent;
+  color: #0a0a0a;
+}
+.btn.white:hover {
+  background-color: #f9f9f9;
+}
+.btn.white:focus {
+  box-shadow: 0 0 0 0.125em rgba(255, 255, 255, 0.25);
+}
+.btn.white:active {
+  background-color: #f2f2f2;
+}
+
+/* Light */
+
+.btn.light {
+  background-color: #f5f5f5;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+.btn.light:hover {
+  background-color: #eeeeee;
+}
+.btn.light:focus {
+  box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
+}
+.btn.light:active {
+  background-color: #e8e8e8;
+}
+
+/* Dark */
+
+.btn.dark {
+  background-color: #363636;
+  border-color: transparent;
+  color: #ffffff;
+}
+.btn.dark:hover {
+  background-color: #2f2f2f;
+}
+.btn.dark:focus {
+  box-shadow: 0 0 0 0.125em rgba(54, 54, 54, 0.25);
+}
+.btn.dark:hover {
+  background-color: #242424;
+}
+
+/* Black */
+
+.btn.black {
+  background-color: #0a0a0a;
+  border-color: transparent;
+  color: #ffffff;
+}
+.btn.black:hover {
+  background-color: #040404;
+}
+.btn.black:focus {
+  box-shadow: 0 0 0 0.125em rgba(10, 10, 10, 0.25);
+}
+.btn.black:active {
+  background-color: black;
+}
+
+/* Primary */
+
+.btn.primary {
+  background-color: hsla(var(--color-primary), 53%, 1);
+  border-color: hsla(var(--color-primary), 53%, 1);
+  color: white;
+}
+.btn.primary:hover {
+  background-color: hsla(var(--color-primary), 50%, 1);
+  border-color: hsla(var(--color-primary), 50%, 1);
+}
+.btn.primary:focus {
+  box-shadow: 0 0 0 0.125em hsla(var(--color-primary), 53%, 0.25);
+}
+.btn.primary:active {
+  background-color: hsla(var(--color-primary), 48%, 1);
+}
+
+/* Info */
+
+.btn.info {
+  background-color: hsla(var(--color-info), 53%, 1);
+  border-color: hsla(var(--color-info), 53%, 1);
+  color: white;
+}
+.btn.info:hover {
+  background-color: hsla(var(--color-info), 50%, 1);
+  border-color: hsla(var(--color-info), 50%, 1);
+}
+.btn.info:focus {
+  box-shadow: 0 0 0 0.125em hsla(var(--color-info), 53%, 0.25);
+}
+.btn.info:active {
+  background-color: hsla(var(--color-info), 48%, 1);
+}
+
+/* Success */
+
+.btn.success {
+  background-color: hsla(var(--color-success), 53%, 1);
+  border-color: hsla(var(--color-success), 53%, 1);
+  color: white;
+}
+.btn.success:hover {
+  background-color: hsla(var(--color-success), 50%, 1);
+  border-color: hsla(var(--color-success), 50%, 1);
+}
+.btn.success:focus {
+  box-shadow: 0 0 0 0.125em hsla(var(--color-success), 53%, 0.25);
+}
+.btn.success:active {
+  background-color: hsla(var(--color-success), 48%, 1);
+}
+
+/* Warning */
+
+.btn.warning {
+  background-color: hsla(var(--color-warning), 67%, 1);
+  border-color: hsla(var(--color-warning), 67%, 1);
+  color: rgba(0, 0, 0, 0.7);
+}
+.btn.warning:hover {
+  background-color: hsla(var(--color-warning), 64%, 1);
+  border-color: hsla(var(--color-warning), 64%, 1);
+}
+.btn.warning:focus {
+  box-shadow: 0 0 0 0.125em hsla(var(--color-warning), 67%, 0.25);
+}
+.btn.warning:active {
+  background-color: hsla(var(--color-warning), 55%, 1);
+}
+
+/* Danger */
+
+.btn.danger {
+  background-color: hsla(var(--color-danger), 61%, 1);
+  border-color: hsla(var(--color-danger), 61%, 1);
+  color: white;
+}
+.btn.danger:hover {
+  background-color: hsla(var(--color-danger), 58%, 1);
+  border-color: hsla(var(--color-danger), 58%, 1);
+}
+.btn.danger:focus {
+  box-shadow: 0 0 0 0.125em hsla(var(--color-danger), 58%, 0.25);
+}
+.btn.danger:active {
+  background-color: hsla(var(--color-danger), 55%, 1);
+}
+
+/* Button sizing
+   ========================================================================== */
+
+.btn.small {
+  font-size: 0.75em;
+}
+
+.btn.medium {
+  font-size: 1.25em;
+}
+
+.btn.large {
+  font-size: 1.5em;
+}
