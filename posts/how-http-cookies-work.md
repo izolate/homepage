@@ -52,8 +52,8 @@ This creates a new cookie with the following attributes:
 * `MaxAge` - Number of seconds until the cookie expires
 * `Domain` - Host to where the cookie is sent
 * `Path` - Path that must exists in the URL for the client to return the cookie
-* `Secure` - Client can only send the cookie back to the server over HTTPS
-* `HttpOnly` - Forbids the DOM APIs (JavaScript) from accessing the cookie
+* `HttpOnly` - Client can only send the cookie back to the server over HTTPS
+* `Secure` - Forbids the DOM APIs (JavaScript) from accessing the cookie
 
 <br>
 
