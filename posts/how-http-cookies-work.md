@@ -6,54 +6,72 @@ template: posts
 public: true
 ---
 
-An HTTP cookie is a tiny (4 KB) piece of data that a client (e.g. browser)
+An HTTP cookie is a tiny (4 KB) piece of data that a client (e.g. your browser)
 stores locally.
 
-Since HTTP is a stateless protocol, cookies act as a shared state that enable
-some truly great things (persistent login sessions), and some other not-so-great
-ones (ad-tracking).
+Since HTTP is a stateless protocol, cookies act as a shared, persistent state
+between the client and sever, and that enables us to build complex applications.
+Login sessions are a very common use case for cookies.
 
 <br>
 
 ## Creating cookies
 
-A cookie's life is conceived when a server responds to a request and instructs
-the client to set a cookie, using the aptly-named `Set-Cookie` HTTP header
-in the response.
+While cookies can also be created by the client itself, server-initiated
+cookies are the most common, and the one we'll focus on.
+
+The client stores a cookie when the server gives it an order to do so.
+This order comes by the way of a specific header in the **response** to the
+client's HTTP request:
 
 ```http
 HTTP/1.1 200 OK
 Set-Cookie: user_id=123
 ```
 
-A cookie can have several optional attributes too, which are separated by a
+This will create a cookie with name of `user_id` and value of `123`.
+
+A cookie may have several attributes too, which are separated by a
 semicolon (`;`), and appended to the end of the cookie value.
 
 ```http
 Set-Cookie: user_id=123; Expires=Wed, 11 Aug 2019 00:00:00 GMT; Secure; HttpOnly
 ```
 
-This sets the expiry date of the cookie (`Expiry`), ensures it's only sent to
-the server via HTTPS (`Secure`), and doesn't expose it to the DOM APIs (`HttpOnly`).
+This creates a new cookie with the following attributes:
 
-Upon parsing the response header, the browser saves the cookie locally.
+* Name: `user_id`
+* Value: `123`
+* Expiry: `Wed, 11 Aug 2019 00:00:00 GMT`
+* Secure: `true`
+* HttpOnly: `true`
+
+### Common attributes
+
+* `Expiry` - Date at which the cookie expires
+* `MaxAge` - Number of seconds until the cookie expires
+* `Domain` - Host to where the cookie is sent
+* `Path` - Path that must exists in the URL for the client to return the cookie
+* `Secure` - Client can only send the cookie back to the server over HTTPS
+* `HttpOnly` - Forbids the DOM APIs (JavaScript) from accessing the cookie
 
 <br>
 
-## Setting multiple cookies
+## Creating multiple cookies
 
-Cookies are standardised by the Internet Engineering Task Force (IETF) and
-explained in a RFC Document.
+There is old, deprecated way and a new standard. Cookies are standardised by
+the Internet Engineering Task Force (IETF) and explained in a Request For
+Comments (RFC) Document.
 
 Initially, the behaviour of cookies was outlined in
 [RFC 2109](https://tools.ietf.org/html/rfc2109), which allowed multiple cookies
 to be "folded" into a single `Set-Cookie` header separated by a comma.
 
-<small style="color:#ccc; margin-bottom:-45px; display:block">❌ &nbsp;The wrong way</small>
+<small style="color:#ccc; margin-bottom:-45px; display:block">❌ &nbsp;DEPRECATED</small>
+
 ```http
 Set-Cookie: user_id=123, app_theme=dark, likes_apples=true
 ```
-
 
 As you can imagine, setting multiple cookies (along with their attributes)
 created long, unsightly header values. Probably realising this needed
@@ -66,6 +84,7 @@ This was quickly adopted by all major browsers, and now allows for a much
 cleaner approach to creating multiple cookies.
 
 <small style="color:#ccc; margin-bottom:-45px; display:block">✔️ &nbsp;The correct way</small>
+
 ```http
 Set-Cookie: user_id=123
 Set-Cookie: app_theme=dark
@@ -91,9 +110,8 @@ header value, and are a bit confusingly separated by a semicolon.
 Cookie: user_id=123; app_theme=dark; likes_apples=true
 ```
 
-You don't have to worry about setting cookie attributes in the request, because
-they are never returned back to the server. It's a one-way street for them,
-from server to client.
+Cookie attributes are never returned to the server. They are instructions for
+the client from the server.
 
 <br>
 
