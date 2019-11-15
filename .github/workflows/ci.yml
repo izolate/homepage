@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build & deploy site
+        uses: tota-dart/tota-deploy-action@master
+        with:
+          host: netlify
+          verbose: true
+        env:
+          TOTA_URL: "https://izolate.net"
+          TOTA_TITLE: "Yosh (izolate)"
+          TOTA_DESCRIPTION: "izolate is a full stack software engineer and UI designer. He's passionate about startups, open-source and good design"
+          TOTA_AUTHOR: "izolate"
+          TOTA_DATE_FORMAT: "yMMMd"
+          TOTA_NETLIFY_SITE: "izolate"
+          TOTA_NELIFY_TOKEN: ${{ secrets.TOTA_NETLIFY_TOKEN }}
