@@ -48,12 +48,14 @@ This creates a new cookie with the following attributes:
 
 ### Common attributes
 
-* `Expiry` - Date at which the cookie expires
-* `MaxAge` - Number of seconds until the cookie expires
-* `Domain` - Host to where the cookie is sent
-* `Path` - Path that must exists in the URL for the client to return the cookie
-* `HttpOnly` - Client can only send the cookie back to the server over HTTPS
-* `Secure` - Forbids the DOM APIs (JavaScript) from accessing the cookie
+Name | Description
+--- | ---
+`Expiry` | Date at which the cookie expires
+`MaxAge` | Number of seconds until the cookie expires
+`Domain` | Host to where the cookie is sent
+`Path` | Path that must exists in the URL for the client to return the cookie
+`HttpOnly` | Client can only send the cookie back to the server over HTTPS
+`Secure` | Forbids the DOM APIs (JavaScript) from accessing the cookie
 
 <br>
 

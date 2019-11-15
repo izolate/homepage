@@ -108,6 +108,8 @@ code {
    Tables
    ========================================================================== */
 
+table td,
+table th,
 .table td,
 .table th {
   padding: 0.5em 0.75em;
@@ -116,11 +118,13 @@ code {
   border-width: 0 0 1px;
 }
 
+table th,
 .table th {
   font-weight: bold;
   border-width: 0 0 2px;
 }
 
+table th:not([align]),
 .table th:not([align]) {
   text-align: left;
 }
@@ -128,6 +132,7 @@ code {
 /* ==========================================================================
    Buttons
    ========================================================================== */
+
 .btn {
   padding-top: calc(0.65em - 1px);
   padding-bottom: calc(0.65em - 1px);

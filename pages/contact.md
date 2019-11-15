@@ -1,5 +1,6 @@
 ---
-title: "Contact"
+title: "Contact izolate"
+template: base
 public: true
 ---
 
