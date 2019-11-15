@@ -35,10 +35,7 @@ static site generators available, why would anyone choose to build their own?
 
 <img alt="but why?" title="Don't worry, no more memes" class="meme" width="250" src="https://media.giphy.com/media/s239QJIh56sRW/giphy.gif">
 
-While those are indeed fantastic offerings, their complexity can be overkill.
-You can also avoid installing (and maintaining) a 3rd party client by writing your own.
-Lastly, you can benefit from gaining an understanding of how generators work,
-and maybe have some fun by accident.
+While I do recommend using a battle-tested SSG for official business, their inherent complexities can be overkill for the general hobbyist's need. Building a static-site generator is a surprisingly simple, fun exercise that, at the very least, will leave you with a greater understanding of your chosen programming language's file system/IO library.
 
 <br>
 
