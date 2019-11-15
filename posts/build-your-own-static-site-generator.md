@@ -14,8 +14,8 @@ in its instrinsic value, then I'm sorry I have no good advice for you.
 However, perhaps building your own blogging platform from scratch (_or, indeed, writing
 the guide on how it's done_) could give you the motivation you so desperately need.
 
-So, in this guide I'll walk you through the steps of building your own **static site
-generator** (SSG) using the following components:
+In this guide I'll walk you through the steps of building your own **static site
+generator** (SSG) from start to finish using the following components:
 
 * **[Node.js](https://nodejs.org/en/)** - minimum version 12.x ⚠️
 * **[Markdown](https://daringfireball.net/projects/markdown/)** - a sensible markup language to write posts in.
@@ -28,7 +28,7 @@ Or if you'd like, you can skip straight to the
 
 ## Why build your own?
 
-There's an 🐘 in the room; out of the [almost](https://jekyllrb.com)
+To address the 🐘 in the room; out of the [almost](https://jekyllrb.com)
 [endless](https://gohugo.io) [list](https://hexo.io)
 [of](https://blog.getpelican.com) [ready-built](https://www.gatsbyjs.org/),
 static site generators available, why would anyone choose to build their own?
