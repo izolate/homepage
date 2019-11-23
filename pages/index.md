@@ -15,9 +15,9 @@ Please [contact me](/contact) if you're looking to work together.
 ## Skills
 
 - JavaScript, Node.js, Go, Python, Dart.
-- React, React Native, Flutter, Vue.
-- Postgres, MongoDB, Google Firestore/Spanner, Redis.
-- Linux, Docker, K8s, Google Cloud, AWS, and more.
+- React, React Native, Flutter, Vue, GraphQL.
+- Postgres, SQL, MongoDB, Google Firestore/Spanner, Redis.
+- Linux, Docker, K8s, Pub/Sub, Google Cloud, AWS, and more.
 
 ## Open source
 
