@@ -11,6 +11,8 @@
  * Headings.............H1–H6 styles.
  * Links................Anchor styles.
  * Code.................Code block styles.
+ * Blockquote...........Block quote styles.
+ * Lists................List styles.
  * Quotes...............Block quote styles.
  *
  * OBJECTS
@@ -107,7 +109,7 @@ code:not([class^="language-"]) {
 }
 
 /*------------------------------------*\
-  #Code
+  #Blockquote
 \*------------------------------------*/
 
 blockquote {
@@ -115,6 +117,15 @@ blockquote {
   padding-left: 1em;
   border-left: 2px solid var(--color-yellow);
   font-style: italic;
+}
+
+/*------------------------------------*\
+  #Lists
+\*------------------------------------*/
+
+ul li,
+ol li {
+  margin: 0.65em 0;
 }
 
 /*------------------------------------*\
@@ -149,9 +160,12 @@ blockquote {
 }
 
 /*------------------------------------*\
-  #Archive
+  #Hero
 \*------------------------------------*/
-.archive-list {
-  list-style: none;
-  padding: 0;
+.hero {
+  padding: 2em 0;
+}
+
+.hero .title {
+  text-align: center;
 }

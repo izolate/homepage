@@ -5,18 +5,41 @@
   </head>
   <body>
     <main class="container">
-      <h1>Blog</h1>
-      <p>All opinions expressed here are entirely my own and not representative of my employers; past, present or future.</p>
-      <ul class="archive-list">
+      <div class="hero">
+        <h1 class="title">Posts</h1>
+        <p class="subtitle">
+          All opinions expressed here are entirely my own and not representative
+          of my employers; past, present or future.
+        </p>
+      </div>
+
+      <ul class="posts">
       {{#posts}}
-        <li>
-          <a href="{{{path}}}">
-            <h3>{{title}}</h3>
-          </a>
+        <li data-date={{date}}>
+          <a href="{{{path}}}">{{title}}</a> – <span class="date"></span>
         </li>
       {{/posts}}
       </ul>
     </main>
+
     {{> footer }}
+
+    <script>
+      // Formats the date to be human-readable
+      const formatDate = date =>
+        date.toLocaleString('default', {
+          month: 'short',
+          year: 'numeric',
+          day: '2-digit'
+        });
+
+      const posts = document.querySelectorAll('ul.posts li')
+
+      // Add dates to posts list
+      for (const post of posts) {
+        const date = new Date(post.dataset.date)
+        post.querySelector('.date').textContent = formatDate(date)
+      }
+    </script>
   </body>
 </html>
